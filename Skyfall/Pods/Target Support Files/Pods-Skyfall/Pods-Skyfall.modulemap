@@ -1,0 +1,6 @@
+framework module Pods_Skyfall {
+  umbrella header "Pods-Skyfall-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tXr-a1-R10">
+            <objects>
+                <viewController id="BV1-FR-VrT" customClass="ViewController" customModule="Skyfall" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="juw-Nb-pRD">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P4k-Vl-92C">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </arscnView>
+                            <visualEffectView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JG9-CH-hFH">
+                                <rect key="frame" x="16" y="36" width="343" height="40"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="eSk-Vg-Tz0">
+                                    <rect key="frame" x="0.0" y="0.0" width="343" height="40"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <color key="tintColor" red="0.21933177109999999" green="0.24094620350000001" blue="0.1101843044" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <blurEffect style="light"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </visualEffectView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="City, State, Zipcode" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VTz-B4-Hsi">
+                                <rect key="frame" x="16" y="36" width="343" height="40"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" red="0.21933177109999999" green="0.24094620350000001" blue="0.1101843044" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Koa-ig-pBG"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
+                                <textInputTraits key="textInputTraits" keyboardAppearance="alert" enablesReturnKeyAutomatically="YES" textContentType="location"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="JG9-CH-hFH" firstAttribute="top" secondItem="VTz-B4-Hsi" secondAttribute="top" id="FhE-Ti-hB1"/>
+                            <constraint firstItem="hns-ZM-c9i" firstAttribute="trailing" secondItem="P4k-Vl-92C" secondAttribute="trailing" id="Grg-T8-Sgr"/>
+                            <constraint firstItem="P4k-Vl-92C" firstAttribute="bottom" secondItem="hns-ZM-c9i" secondAttribute="bottom" id="Pf3-u5-90N"/>
+                            <constraint firstItem="JG9-CH-hFH" firstAttribute="trailing" secondItem="VTz-B4-Hsi" secondAttribute="trailing" id="VnA-SK-YMc"/>
+                            <constraint firstItem="hns-ZM-c9i" firstAttribute="trailing" secondItem="VTz-B4-Hsi" secondAttribute="trailing" constant="16" id="XHY-po-Y8h"/>
+                            <constraint firstItem="JG9-CH-hFH" firstAttribute="leading" secondItem="VTz-B4-Hsi" secondAttribute="leading" id="e9o-1O-cHs"/>
+                            <constraint firstItem="VTz-B4-Hsi" firstAttribute="top" secondItem="hns-ZM-c9i" secondAttribute="top" constant="16" id="gJL-9J-PgR"/>
+                            <constraint firstItem="JG9-CH-hFH" firstAttribute="bottom" secondItem="VTz-B4-Hsi" secondAttribute="bottom" id="gUD-VP-IYN"/>
+                            <constraint firstItem="P4k-Vl-92C" firstAttribute="leading" secondItem="hns-ZM-c9i" secondAttribute="leading" id="lq4-f4-zOw"/>
+                            <constraint firstItem="hns-ZM-c9i" firstAttribute="top" secondItem="P4k-Vl-92C" secondAttribute="top" constant="20" id="piv-i5-iel"/>
+                            <constraint firstItem="VTz-B4-Hsi" firstAttribute="leading" secondItem="hns-ZM-c9i" secondAttribute="leading" constant="16" id="zFn-sV-uwL"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="hns-ZM-c9i"/>
+                    </view>
+                    <connections>
+                        <outlet property="sceneView" destination="P4k-Vl-92C" id="sZz-bN-B5r"/>
+                        <outlet property="searchBar" destination="VTz-B4-Hsi" id="NGs-tU-rAo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="32.799999999999997" y="31.773399014778327"/>
+        </scene>
+    </scenes>
+</document>
