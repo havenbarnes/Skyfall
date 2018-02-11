@@ -90,6 +90,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, UITextFieldDelegate {
     func presentModal(latitude: Float, longitude: Float) {
         activityView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
         activityView?.center = view.center
+        activityView?.startAnimating()
         if activityView != nil {
             view.addSubview(activityView!)
         }
@@ -109,13 +110,14 @@ class ViewController: UIViewController, ARSCNViewDelegate, UITextFieldDelegate {
                 var frame = self.modalView?.frame
                 frame?.origin.y = self.view.frame.height
                 frame?.size.width = self.view.frame.width
+                frame?.size.height = self.view.frame.height
                 self.modalView?.frame = frame!
                 self.view.addSubview(self.modalView!)
                 
                 self.activityView?.removeFromSuperview()
                 self.activityView = nil
                 UIView.animate(withDuration: 0.4, animations: {
-                    frame?.origin.y = 100
+                    frame?.origin.y = 0
                     self.modalView?.frame = frame!
                 })
             })
