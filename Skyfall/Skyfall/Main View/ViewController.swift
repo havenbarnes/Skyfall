@@ -11,11 +11,16 @@ import SceneKit
 import ARKit
 import Photos
 
-class ViewController: UIViewController, ARSCNViewDelegate {
+class ViewController: UIViewController, ARSCNViewDelegate, UITextFieldDelegate {
     
     @IBOutlet var sceneView: ARSCNView!
-    @IBOutlet weak var searchBar: UITextField!
     @IBOutlet weak var crosshair: UILabel!
+    @IBOutlet weak var helpMessage: UIVisualEffectView!
+    
+    var modalView: WeatherModalView?
+    var activityView: UIActivityIndicatorView?
+    
+    private var globeAdded = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +35,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+        return .default
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,42 +64,79 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     func setupUI() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapped))
         sceneView.addGestureRecognizer(tap)
-        
-        let leftSpace = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 0))
-        searchBar.leftView = leftSpace
-        searchBar.leftViewMode = UITextFieldViewMode.always
-        searchBar.leftViewMode = .always
     }
-    
+
     @objc func tapped(recognizer: UITapGestureRecognizer) {
+        guard modalView?.superview == nil else { return }
         let sceneView = recognizer.view as! ARSCNView
         let hitLocation = crosshair.center
         let hitResults = sceneView.hitTest(hitLocation, options: [:])
         if !hitResults.isEmpty {
-            print("!!!!!!!!!!!!!!!\n\(hitResults.first!.localCoordinates)\n!!!!!!!!!!!!!!!!!")
             let coords = hitResults.first!.localCoordinates
             let r = sqrt(pow(coords.x, 2) + pow(coords.y, 2) + pow(coords.z, 2))
             let theta = acos(coords.y / r)
             let phi = atan(coords.x / coords.z)
             
             let latitude = 90 - (theta * 180 / Float.pi)
-
-            let longitude = phi * 180 / Float.pi
-            print("!!!!!!!!!!!!!!!\n\(latitude),\(longitude)\n!!!!!!!!!!!!!!!!!")
+            var longitude = (phi * 180 / Float.pi)
+//            if coords.x < 0 {
+//                longitude = -abs(longitude)
+//            }
+            print("\(latitude),\(longitude)")
+            presentModal(latitude: latitude, longitude: longitude)
+        }
+    }
+    
+    func presentModal(latitude: Float, longitude: Float) {
+        activityView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+        activityView?.center = view.center
+        if activityView != nil {
+            view.addSubview(activityView!)
+        }
+        
+        App.shared.api.fetch(endpoint: .forecast("\(latitude)", "\(longitude)"), options: nil) { (json) in
+            
+            guard let json = json else {
+                let alert = UIAlertController(title: "Weather Fetch Failed", message: "Please try again.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                return
+            }
+            
+            self.modalView = WeatherModalView.fromNib()
+            self.modalView?.weatherData = json
+            self.modalView?.load(lat: latitude, long: longitude, completion: {
+                var frame = self.modalView?.frame
+                frame?.origin.y = self.view.frame.height
+                frame?.size.width = self.view.frame.width
+                self.modalView?.frame = frame!
+                self.view.addSubview(self.modalView!)
+                
+                self.activityView?.removeFromSuperview()
+                self.activityView = nil
+                UIView.animate(withDuration: 0.4, animations: {
+                    frame?.origin.y = 100
+                    self.modalView?.frame = frame!
+                })
+            })
         }
     }
     
     // MARK: - ARSCNViewDelegate
-    // MARK: - ARSCNViewDelegate
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         
         guard let planeAnchor = anchor as? ARPlaneAnchor else { return }
+        guard !globeAdded else { return }
         
         let planeNode = self.createGlobeNode(anchor: planeAnchor)
-        
-        // ARKit owns the node corresponding to the anchor, so make the plane a child node.
         node.addChildNode(planeNode)
+        globeAdded = true
         
+        DispatchQueue.main.async {
+            UIView.animate(withDuration: 0.3) {
+                self.helpMessage.alpha = 0
+            }
+        }
     }
     
     func createGlobeNode(anchor: ARPlaneAnchor) -> SCNNode {
@@ -102,7 +144,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Create the geometry and its materials
         let sphere = SCNSphere(radius: 0.2)
         let material = SCNMaterial()
-        
         
         var texture = ""
         if isDay() {
@@ -117,8 +158,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let globeNode = SCNNode(geometry: sphere)
         globeNode.position = SCNVector3Make(anchor.center.x, 0.2, anchor.center.z)
 
-        
-    
         return globeNode
     }
     

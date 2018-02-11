@@ -27,7 +27,7 @@ class DarkSky {
         case exclude(String)
     }
     
-    func url(for endpoint: Endpoint, with options: [Options]?) -> String {
+    private func url(for endpoint: Endpoint, with options: [Options]?) -> String {
         var url = DarkSky.baseUrl
         switch endpoint {
         case .forecast(let latitude, let longitude):

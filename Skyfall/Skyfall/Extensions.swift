@@ -9,16 +9,18 @@
 import Foundation
 import UIKit
 
+extension UIView {
+    class func fromNib<T: UIView>() -> T {
+        return Bundle.main.loadNibNamed(String(describing: T.self), owner: nil, options: nil)![0] as! T
+    }
+}
+
 extension UIViewController {
-    
     func instantiate(_ storyboard: String, identifier: String) -> UIViewController {
-        
         let storyboard = UIStoryboard(name: storyboard, bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: identifier)
         return viewController
-        
     }
-    
 }
 
 extension UIColor {

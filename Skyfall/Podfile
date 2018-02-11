@@ -8,4 +8,5 @@ target 'Skyfall' do
   # Pods for Skyfall
   pod 'Alamofire'
   pod 'SwiftyJSON'
+  pod 'BEMSimpleLineGraph'
 end
