@@ -20,6 +20,7 @@
                         <subviews>
                             <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P4k-Vl-92C">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" red="0.69803921568627447" green="0.57647058823529407" blue="0.42352941176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </arscnView>
                             <visualEffectView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JG9-CH-hFH">
                                 <rect key="frame" x="16" y="36" width="343" height="40"/>
@@ -35,7 +36,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </visualEffectView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="City, State, Zipcode" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VTz-B4-Hsi">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter City, State, or Zipcode" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VTz-B4-Hsi">
                                 <rect key="frame" x="16" y="36" width="343" height="40"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" red="0.21933177109999999" green="0.24094620350000001" blue="0.1101843044" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -44,13 +45,21 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
-                                <textInputTraits key="textInputTraits" keyboardAppearance="alert" enablesReturnKeyAutomatically="YES" textContentType="location"/>
+                                <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="search" textContentType="location"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2IP-fl-zfE" userLabel="Crosshair">
+                                <rect key="frame" x="181.5" y="333" width="11" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="2IP-fl-zfE" firstAttribute="centerX" secondItem="hns-ZM-c9i" secondAttribute="centerX" id="E9e-SV-69E"/>
                             <constraint firstItem="JG9-CH-hFH" firstAttribute="top" secondItem="VTz-B4-Hsi" secondAttribute="top" id="FhE-Ti-hB1"/>
                             <constraint firstItem="hns-ZM-c9i" firstAttribute="trailing" secondItem="P4k-Vl-92C" secondAttribute="trailing" id="Grg-T8-Sgr"/>
+                            <constraint firstItem="2IP-fl-zfE" firstAttribute="centerY" secondItem="hns-ZM-c9i" secondAttribute="centerY" id="Mr2-dR-BP8"/>
                             <constraint firstItem="P4k-Vl-92C" firstAttribute="bottom" secondItem="hns-ZM-c9i" secondAttribute="bottom" id="Pf3-u5-90N"/>
                             <constraint firstItem="JG9-CH-hFH" firstAttribute="trailing" secondItem="VTz-B4-Hsi" secondAttribute="trailing" id="VnA-SK-YMc"/>
                             <constraint firstItem="hns-ZM-c9i" firstAttribute="trailing" secondItem="VTz-B4-Hsi" secondAttribute="trailing" constant="16" id="XHY-po-Y8h"/>
@@ -64,13 +73,14 @@
                         <viewLayoutGuide key="safeArea" id="hns-ZM-c9i"/>
                     </view>
                     <connections>
+                        <outlet property="crosshair" destination="2IP-fl-zfE" id="94q-Jx-dVR"/>
                         <outlet property="sceneView" destination="P4k-Vl-92C" id="sZz-bN-B5r"/>
                         <outlet property="searchBar" destination="VTz-B4-Hsi" id="NGs-tU-rAo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="32.799999999999997" y="31.773399014778327"/>
+            <point key="canvasLocation" x="32.799999999999997" y="31.03448275862069"/>
         </scene>
     </scenes>
 </document>

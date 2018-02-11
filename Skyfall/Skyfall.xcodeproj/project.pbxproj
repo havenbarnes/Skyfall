@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8119EB22202F8E5300293AC7 /* WeatherTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8119EB21202F8E5300293AC7 /* WeatherTableView.swift */; };
+		8119EB25202F8EC400293AC7 /* WeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8119EB23202F8EC400293AC7 /* WeatherCell.swift */; };
+		8119EB26202F8EC400293AC7 /* WeatherCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8119EB24202F8EC400293AC7 /* WeatherCell.xib */; };
+		8119EB28202F8F7500293AC7 /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8119EB27202F8F7500293AC7 /* WeatherData.swift */; };
 		811E0B0C202F638D00E15E85 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811E0B0B202F638D00E15E85 /* AppDelegate.swift */; };
 		811E0B0E202F638D00E15E85 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 811E0B0D202F638D00E15E85 /* art.scnassets */; };
 		811E0B10202F638D00E15E85 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811E0B0F202F638D00E15E85 /* ViewController.swift */; };
@@ -23,6 +27,10 @@
 		1038C5B4B8ECECC4BA384D30 /* Pods_Skyfall.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Skyfall.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		16CB1E75FEC821452CD1D0AA /* Pods-Skyfall.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Skyfall.release.xcconfig"; path = "Pods/Target Support Files/Pods-Skyfall/Pods-Skyfall.release.xcconfig"; sourceTree = "<group>"; };
 		4CD5C1CFF69465B4F468E883 /* Pods-Skyfall.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Skyfall.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Skyfall/Pods-Skyfall.debug.xcconfig"; sourceTree = "<group>"; };
+		8119EB21202F8E5300293AC7 /* WeatherTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTableView.swift; sourceTree = "<group>"; };
+		8119EB23202F8EC400293AC7 /* WeatherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCell.swift; sourceTree = "<group>"; };
+		8119EB24202F8EC400293AC7 /* WeatherCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeatherCell.xib; sourceTree = "<group>"; };
+		8119EB27202F8F7500293AC7 /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
 		811E0B08202F638D00E15E85 /* Skyfall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Skyfall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		811E0B0B202F638D00E15E85 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		811E0B0D202F638D00E15E85 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -69,8 +77,28 @@
 			isa = PBXGroup;
 			children = (
 				811E0B21202F652700E15E85 /* DarkSky.swift */,
+				8119EB27202F8F7500293AC7 /* WeatherData.swift */,
 			);
 			path = DarkSky;
+			sourceTree = "<group>";
+		};
+		8119EB1E202F8DAB00293AC7 /* Weather Table */ = {
+			isa = PBXGroup;
+			children = (
+				8119EB21202F8E5300293AC7 /* WeatherTableView.swift */,
+				8119EB23202F8EC400293AC7 /* WeatherCell.swift */,
+				8119EB24202F8EC400293AC7 /* WeatherCell.xib */,
+			);
+			path = "Weather Table";
+			sourceTree = "<group>";
+		};
+		8119EB29202F956200293AC7 /* Main View */ = {
+			isa = PBXGroup;
+			children = (
+				811E0B0F202F638D00E15E85 /* ViewController.swift */,
+				8119EB1E202F8DAB00293AC7 /* Weather Table */,
+			);
+			path = "Main View";
 			sourceTree = "<group>";
 		};
 		811E0AFF202F638D00E15E85 = {
@@ -96,7 +124,7 @@
 			children = (
 				811E0B1F202F651E00E15E85 /* App.swift */,
 				811E0B0B202F638D00E15E85 /* AppDelegate.swift */,
-				811E0B0F202F638D00E15E85 /* ViewController.swift */,
+				8119EB29202F956200293AC7 /* Main View */,
 				8119EB1D202F84DA00293AC7 /* DarkSky */,
 				811E0B22202F652700E15E85 /* Extensions.swift */,
 				811E0B11202F638D00E15E85 /* Main.storyboard */,
@@ -174,6 +202,7 @@
 				811E0B18202F638D00E15E85 /* LaunchScreen.storyboard in Resources */,
 				811E0B15202F638D00E15E85 /* Assets.xcassets in Resources */,
 				811E0B13202F638D00E15E85 /* Main.storyboard in Resources */,
+				8119EB26202F8EC400293AC7 /* WeatherCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,9 +271,12 @@
 			files = (
 				811E0B24202F652800E15E85 /* Extensions.swift in Sources */,
 				811E0B20202F651E00E15E85 /* App.swift in Sources */,
+				8119EB22202F8E5300293AC7 /* WeatherTableView.swift in Sources */,
 				811E0B23202F652800E15E85 /* DarkSky.swift in Sources */,
 				811E0B10202F638D00E15E85 /* ViewController.swift in Sources */,
 				811E0B0C202F638D00E15E85 /* AppDelegate.swift in Sources */,
+				8119EB28202F8F7500293AC7 /* WeatherData.swift in Sources */,
+				8119EB25202F8EC400293AC7 /* WeatherCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

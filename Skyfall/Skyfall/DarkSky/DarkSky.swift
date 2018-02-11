@@ -28,7 +28,7 @@ class DarkSky {
     }
     
     func url(for endpoint: Endpoint, with options: [Options]?) -> String {
-        var url = DarkSkies.baseUrl
+        var url = DarkSky.baseUrl
         switch endpoint {
         case .forecast(let latitude, let longitude):
             url += "\(latitude),\(longitude)"
